@@ -1,16 +1,22 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Firebase Crud</a>
-    </div>
-    <div *ngIf="afService.isLoggedIn()" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <nav mat-tab-nav-bar aria-label="weather navigation links">
+      <a mat-tab-link [routerLink]="['/']" >
+      Lets Chat- DILEEP
+    </a>
+      <a mat-tab-link [routerLink]="['/classdetails']" >
+      Class Details
+    </a>
+    </nav>
+
+    <!--<div *ngIf="afService.isLoggedIn()" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a (click)="logout()">Logout</a></li>
       </ul>
-    </div>
+    </div>-->
   </div>
+
 </nav>
 <div class="app-content">
   <router-outlet></router-outlet>
 </div>
-

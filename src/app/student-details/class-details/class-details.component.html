@@ -1,0 +1,9 @@
+<div>
+  <mat-form-field>
+    <mat-select [(value)]="selected" placeholder="Select Class"> 
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let class of classes" value="{{class.displayName}}">{{class.displayName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>You selected: {{selected}}</p>
+</div>

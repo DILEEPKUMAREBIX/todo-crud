@@ -16,21 +16,33 @@ import { AF } from './providers/af';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
+import { ClassDetailsComponent } from './student-details/class-details/class-details.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+
 
 
 // Must export the config
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCCVQRdNjlSEpfgk6koD-LU-lVNcPK5bg4',
-  authDomain: 'fir-crud-dil.firebaseapp.com',
-  databaseURL: 'https://fir-crud-dil.firebaseio.com',
-  storageBucket: 'fir-crud-dil.appspot.com',
-  messagingSenderId: '777843154072'
+  apiKey: 'AIzaSyCl9ABgYBRDFELSX006AwQ_WBMWtf4CkTQ',
+  authDomain: 'wechatkkt.firebaseapp.com',
+  databaseURL: 'https://wechatkkt.firebaseio.com',
+  storageBucket: 'wechatkkt.appspot.com',
+  messagingSenderId: '316454207417'
 };
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'register', component: RegistrationPageComponent}
+  { path: 'register', component: RegistrationPageComponent },
+  { path: 'classdetails', component: ClassDetailsComponent }
 ];
 
 @NgModule({
@@ -40,11 +52,19 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
 
   providers: [AF],
-  declarations: [AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent],
+  declarations: [AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ClassDetailsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

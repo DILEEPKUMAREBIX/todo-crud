@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@ang
 import { Observable } from 'rxjs/Observable';
 
 import { AF } from "../providers/af";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -14,9 +15,20 @@ export class HomePageComponent implements OnInit {
   public messages: Observable<any[]>;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-  constructor(public afService: AF) {
-    
+  constructor(public afService: AF, private router: Router) {
+
     this.messages = this.afService.messages;
+
+    if (this.afService.isLoggedIn()) {
+      console.log("Successfully Logged in.");
+      // UPDATE: I forgot this at first. Without it when a user is logged in and goes directly to /login
+      // the user did not get redirected to the home page.
+      this.router.navigate(['']);
+    }
+    else {
+      console.log("Not Logged in.");
+      this.router.navigate(['login']);
+    }
 
   }
 
@@ -25,6 +37,7 @@ export class HomePageComponent implements OnInit {
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
+  
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
