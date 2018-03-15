@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 
 import { RouterModule, Routes } from "@angular/router";
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
@@ -17,14 +18,23 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { ClassDetailsComponent } from './student-details/class-details/class-details.component';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { ShowErrorsComponent } from './add-student/show-error.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+
+
 
 
 
@@ -42,13 +52,15 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
-  { path: 'classdetails', component: ClassDetailsComponent }
+  { path: 'classdetails', component: ClassDetailsComponent },
+  { path: 'addstudent', component: AddStudentComponent }
 ];
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -60,11 +72,22 @@ const routes: Routes = [
     MatCardModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
 
   providers: [AF],
-  declarations: [AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ClassDetailsComponent],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    HomePageComponent,
+    RegistrationPageComponent,
+    ClassDetailsComponent,
+    AddStudentComponent,
+    ShowErrorsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

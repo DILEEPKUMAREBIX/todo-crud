@@ -1,0 +1,90 @@
+<form class="example-form" [formGroup]="myForm" (ngSubmit)="register(myForm)">
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" formControlName="firstName">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Father Name" formControlName="fatherName">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Date Of Birth" formControlName="DateOfBirth">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email Address" formControlName="email">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Roll Number" formControlName="rollNo">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Address" formControlName="address"></textarea>
+    </mat-form-field>
+  </p>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="City" formControlName="city">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="State" formControlName="state">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="" formControlName="postalcode">
+          <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <div class="example-header">
+    <button mat-raised-button color="primary" [disabled]="!myForm.valid">Submit</button>
+    <button mat-raised-button color="primary" (click)="backClickHandler()">Back</button>
+  </div>
+
+</form>

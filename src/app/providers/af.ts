@@ -26,6 +26,7 @@ export class AF {
     public users: any;
     public displayName: string;
     public email: string;
+    public index:any;
 
 
     constructor(public _firebaseAuth: AngularFireAuth,

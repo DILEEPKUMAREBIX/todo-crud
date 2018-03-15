@@ -1,9 +1,116 @@
 <div>
   <mat-form-field>
-    <mat-select [(value)]="selected" placeholder="Select Class"> 
+    <mat-select [(value)]="selected" placeholder="Select Class" (selectionChange)="changed(selected)">
       <mat-option>None</mat-option>
-      <mat-option *ngFor="let class of classes" value="{{class.displayName}}">{{class.displayName}}</mat-option>
+      <mat-option *ngFor="let class of classes" value="{{class.id}}">{{class.displayName}}</mat-option>
     </mat-select>
   </mat-form-field>
   <p>You selected: {{selected}}</p>
+</div>
+
+<div class="card card-1">
+  <div class='float-right'>
+    <div class="button-row">
+      <button mat-icon-button color="accent" (click)="isEditAction=true;" *ngIf="!isEditAction">
+        <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" *ngIf="isEditAction" (click)="saveClassData()">
+        <mat-icon aria-label="Example icon-button with a heart icon">save</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" (click)="isEditAction=false;" *ngIf="isEditAction">
+        <mat-icon aria-label="Example icon-button with a heart icon">cancel</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-3'>
+      <h5>Class Teacher : </h5>
+    </div>
+    <div class='col-xs-3' *ngIf="!isEditAction && selectedClass && selectedClass.classTeacher">
+      <h5>{{selectedClass.classTeacher}}</h5>
+    </div>
+    <div class='col-xs-3' *ngIf="isEditAction">
+      <mat-form-field>
+        <input matInput placeholder="Input" [(ngModel)]="selectedClass.classTeacher">
+      </mat-form-field>
+    </div>
+    <div class='col-xs-3'>
+      <h5>Class CR :</h5>
+    </div>
+    <div class='col-xs-3' *ngIf="!isEditAction && selectedClass && selectedClass.classCR">
+      <h5>{{selectedClass.classCR}}</h5>
+    </div>
+    <div class='col-xs-3' *ngIf="isEditAction">
+      <mat-form-field>
+        <input matInput placeholder="Input" [(ngModel)]="selectedClass.classCR">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-xs-3'>
+      <h5>Total Strength :</h5>
+    </div>
+    <div class='col-xs-3'>
+      <h5>0</h5>
+    </div>
+    <div class='col-xs-3'>
+      <h5>Total Attendence (in %) :</h5>
+    </div>
+    <div class='col-xs-3'>
+      <h5>100</h5>
+    </div>
+  </div>
+</div>
+
+<div class="example-header">
+    <button mat-raised-button color="primary" (click)="addStudent()">Add Student</button>
+</div>
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="rollno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Roll Number </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rollno}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="fullname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fullname}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="atdp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Attendance in % </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.atdp}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="marksp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Marks in % </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.marksp}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="dob">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> DOB </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.dob}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="5" [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
